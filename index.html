@@ -8,11 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Source+Serif+4:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 background:#F8F3EC;
@@ -21,35 +17,29 @@ font-family:'Source Serif 4', serif;
 overflow-x:hidden;
 }
 
-/* ===== STARS ===== */
+/* STARS */
 .stars{
 position:fixed;
 inset:0;
 pointer-events:none;
 z-index:-1;
-transition:transform .2s ease;
 }
 
 .star{
 position:absolute;
-width:2px;
-height:2px;
+width:2px;height:2px;
 background:white;
 border-radius:50%;
-animation:twinkle 4s infinite ease-in-out, floatStar 12s infinite linear;
+opacity:.6;
+animation:twinkle 6s infinite ease-in-out;
 }
 
 @keyframes twinkle{
-0%,100%{opacity:.2; transform:scale(.6);}
-50%{opacity:1; transform:scale(1.2);}
+0%,100%{opacity:.2;transform:scale(.6);}
+50%{opacity:1;transform:scale(1.2);}
 }
 
-@keyframes floatStar{
-from{transform:translateY(0);}
-to{transform:translateY(-40px);}
-}
-
-/* ===== COVER ===== */
+/* COVER */
 .cover{
 height:100vh;
 display:flex;
@@ -58,64 +48,42 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
-transition:all 1.2s ease;
 }
 
 .cover h1{
 font-family:'Cormorant Garamond', serif;
-font-size:3.5rem;
+font-size:3rem;
 margin-bottom:10px;
 }
 
 .subtitle{
-font-size:1.1rem;
 max-width:420px;
+margin-bottom:25px;
+opacity:.8;
 line-height:1.6;
-margin-bottom:30px;
 }
 
-/* ===== BUTTON ===== */
-.button{
-padding:14px 32px;
-background:white;
+button{
+padding:14px 30px;
 border:none;
 border-radius:999px;
+background:white;
 cursor:pointer;
-font-size:1rem;
-font-family:inherit;
-color:#6B5E55;
 box-shadow:0 5px 15px rgba(0,0,0,.08);
-transition:.3s;
 }
 
-.button:hover{
-transform:translateY(-4px) scale(1.03);
-}
+/* CONTENT */
+#content{display:none;}
 
-/* ===== CONTENT ===== */
-#content{
-display:none;
-opacity:0;
-}
-
-#content.show{
-animation:fadeIn 1.2s ease forwards;
-}
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(20px); filter:blur(8px);}
-to{opacity:1; transform:translateY(0); filter:blur(0);}
-}
-
-/* ===== CARD ===== */
 .card{
 background:rgba(255,255,255,.85);
-backdrop-filter:blur(10px);
-border-radius:25px;
-padding:25px;
 margin:25px auto;
+padding:25px;
 max-width:900px;
+border-radius:20px;
+backdrop-filter:blur(10px);
 box-shadow:0 10px 40px rgba(0,0,0,.08);
+
 opacity:0;
 transform:translateY(30px);
 }
@@ -125,50 +93,77 @@ animation:cardIn 1s ease forwards;
 }
 
 @keyframes cardIn{
-to{opacity:1; transform:translateY(0);}
+to{opacity:1;transform:translateY(0);}
 }
 
+/* SURAT EFFECT */
+.letter-card{
+overflow:hidden;
+transform-origin:top;
+animation:openLetter 1.2s ease forwards;
+}
+
+@keyframes openLetter{
+0%{opacity:0;transform:scaleY(0.8);filter:blur(8px);}
+100%{opacity:1;transform:scaleY(1);filter:blur(0);}
+}
+
+.letter-text{
+opacity:0;
+animation:fadeText 2.5s ease forwards;
+animation-delay:1s;
+line-height:1.8;
+}
+
+@keyframes fadeText{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* TITLE */
 .section-title{
 text-align:center;
-font-size:1.8rem;
-margin-bottom:20px;
 font-family:'Cormorant Garamond', serif;
+margin-bottom:20px;
+font-size:1.8rem;
 }
 
-/* ===== GALLERY ===== */
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:12px;
+/* CAROUSEL */
+.carousel{overflow:hidden;border-radius:15px;}
+
+.track{
+display:flex;
+gap:10px;
+animation:scroll 25s linear infinite;
 }
 
-.gallery img{
-width:100%;
-aspect-ratio:3/4;
+.track img{
+width:180px;
+height:240px;
 object-fit:cover;
-border-radius:14px;
-transition:.3s;
+border-radius:12px;
+flex-shrink:0;
 }
 
-.gallery img:hover{
-transform:scale(1.05);
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 
-/* ===== END ===== */
+/* END */
 .end{
 text-align:center;
 padding:80px 20px;
 }
 
 .end h2{
-font-size:2.5rem;
 font-family:'Cormorant Garamond', serif;
+font-size:2.5rem;
 }
 
-/* ===== MOBILE ===== */
 @media(max-width:768px){
-.cover h1{font-size:2.8rem;}
-.card{margin:15px;}
+.cover h1{font-size:2.5rem;}
+.track img{width:150px;height:210px;}
 }
 </style>
 </head>
@@ -180,11 +175,11 @@ font-family:'Cormorant Garamond', serif;
 <!-- COVER -->
 <section class="cover" id="cover">
 <h1>for my حبيبي 🤍</h1>
-<p class="subtitle">open this whenever life feels a little too heavy.</p>
-<button class="button" onclick="openSite()">click me</button>
+<p class="subtitle">open this whenever life feels heavy</p>
+<button onclick="openSite()">enter</button>
 </section>
 
-<!-- AUDIO -->
+<!-- MUSIC -->
 <audio id="bgm" loop>
 <source src="John Lennon - Beautiful Boy (Darling Boy) - Instrumental.mp4" type="audio/mpeg">
 </audio>
@@ -192,28 +187,40 @@ font-family:'Cormorant Garamond', serif;
 <!-- CONTENT -->
 <div id="content">
 
-<div class="card">
-<h2 class="section-title">a few memories 🤍</h2>
-<div class="gallery">
-<img src="IMG_5896.jpeg"><img src="IMG_5902.jpeg"><img src="IMG_5903.jpeg"><img src="IMG_5904 jpeg">
-<img src="IMG_5905.jpeg"><img src="IMG_5908.jpeg"><img src="IMG_5909.jpeg"><img src="IMG_5910.jpeg">
-<img src="IMG_5911.jpeg"><img src="IMG_5912.jpeg"><img src="IMG_5913.jpeg"><img src="IMG_5914.jpeg">
-</div>
-</div>
+<!-- LETTER -->
+<div class="card letter-card">
+<p class="letter-text">
+hey bb ^^
 
-<div class="card" style="text-align:center;">
-<a class="button" target="_blank" href="https://youtu.be/85fJT2dB_i8">
-🎵 play this while reading
-</a>
-</div>
+i know things have been really heavy for you lately. i know there's been so much on your mind, and sometimes it probably feels like everything is happening all at once. the interviews, the uncertainty, taking care of your mom, going back and forth to the hospital, and still trying to keep yourself together through all of it. i know you don't always talk about everything you're feeling, but i can tell you've been carrying a lot on your shoulders lately. and honestly, i wish i could take some of that weight away from you 🥹🥹
 
-<div class="card">
-<p style="line-height:1.8;">
-hey bb ^^ i know things have been really heavy for you lately...
-but i just want you to remember that i'm here, always 🤍
+that's why i need you to know something, bb. i'm so proud of you. not because of the results, not because everything is going perfectly, but because of everything you've been doing to get there. i see how hard you've been trying, even when life keeps throwing things at you. sometimes you're so focused on the destination that you forget how far you've already come, and the process you're going through right now is already something to be proud of. you don't have to earn my love by being successful, bb. i'm already proud of you, even in the middle of all this. and when your mind gets too loud and you start doubting yourself, look at me, okay? you have me. let me be your support system when things get heavy. we'll get through all of this together, one step at a time. no matter what happens, i'll always be proud of you—not just for what you achieve, but for the person you are and the strength you show every single day 🥹🥹🥹🥹🥹🥹🫶🏻🤍🤍💗💗💗
 </p>
 </div>
 
+<!-- MEMORIES -->
+<div class="card">
+<h2 class="section-title">a few memories 🤍</h2>
+
+<div class="carousel">
+<div class="track">
+<img src="IMG_5896.jpeg">
+<img src="IMG_5902.jpeg">
+<img src="IMG_5903.jpeg">
+<img src="IMG_5904.jpeg">
+<img src="IMG_5905.jpeg">
+<img src="IMG_5908.jpeg">
+<img src="IMG_5909.jpeg">
+<img src="IMG_5910.jpeg">
+<img src="IMG_5911.jpeg">
+<img src="IMG_5912.jpeg">
+<img src="IMG_5913.jpeg">
+<img src="IMG_5914.jpeg">
+</div>
+</div>
+</div>
+
+<!-- END -->
 <div class="end">
 <h2>look at me.</h2>
 <p>you have me. always 🤍</p>
@@ -236,33 +243,32 @@ s.style.top=Math.random()*100+"%";
 stars.appendChild(s);
 }
 
-/* open site */
+/* open */
 function openSite(){
 document.getElementById("cover").style.display="none";
 
 const content=document.getElementById("content");
 content.style.display="block";
-content.classList.add("show");
 
 document.querySelectorAll(".card").forEach((c,i)=>{
 setTimeout(()=>c.classList.add("show"),300*i);
 });
 
-/* music */
+/* music fade */
 const bgm=document.getElementById("bgm");
 bgm.volume=0;
 bgm.play().catch(()=>{});
 
 let v=0;
 let fade=setInterval(()=>{
-if(v<0.6){v+=0.05;bgm.volume=v;}
+if(v<0.5){v+=0.03;bgm.volume=v;}
 else clearInterval(fade);
-},200);
+},150);
 }
 
-/* parallax stars */
+/* stars move */
 document.addEventListener("mousemove",(e)=>{
-stars.style.transform=
+document.getElementById("stars").style.transform=
 `translate(${e.clientX*0.01}px, ${e.clientY*0.01}px)`;
 });
 
