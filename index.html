@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>locked 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Source+Serif+4:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#F8F3EC;
+font-family:'Source Serif 4', serif;
+color:#6B5E55;
+}
+
+.box{
+background:rgba(255,255,255,.85);
+padding:40px;
+border-radius:20px;
+text-align:center;
+width:90%;
+max-width:360px;
+box-shadow:0 10px 40px rgba(0,0,0,.1);
+}
+
+h1{
+font-family:'Cormorant Garamond', serif;
+margin-bottom:10px;
+}
+
+p{
+opacity:.8;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ddd;
+text-align:center;
+margin-bottom:15px;
+font-size:1rem;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:white;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.error{
+color:#c45b5b;
+font-size:.85rem;
+margin-top:10px;
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>locked 🤍</h1>
+<p>enter password to continue</p>
+
+<input type="password" id="pass" placeholder="password...">
+<button onclick="check()">enter</button>
+
+<div class="error" id="error">wrong password :(</div>
+</div>
+
+<script>
+function check(){
+const pass=document.getElementById("pass").value;
+
+/* PASSWORD BARU */
+if(pass==="abud sayang acin"){
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+window.location.href="home.html";
+},800);
+}else{
+document.getElementById("error").style.display="block";
+}
+}
+</script>
+
+</body>
+</html>
