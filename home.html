@@ -247,8 +247,75 @@ typing();
 
 /* OPEN */
 function openSite(){
+function openSite(){
+
 document.getElementById("cover").style.display="none";
 document.getElementById("content").style.display="block";
+
+/* show cards */
+
+document.querySelectorAll(".card").forEach((c,i)=>{
+setTimeout(()=>{
+c.classList.add("show");
+},i*300);
+});
+
+/* typewriter */
+
+const paragraphs=document.querySelectorAll(".typewriter");
+
+paragraphs.forEach(el=>{
+
+el.dataset.text=el.textContent.trim();
+
+el.textContent="";
+
+});
+
+let delay=500;
+
+paragraphs.forEach(el=>{
+
+setTimeout(()=>{
+
+typeEffect(
+el,
+el.dataset.text,
+18
+);
+
+},delay);
+
+delay += (el.dataset.text.length * 18) + 600;
+
+});
+
+/* music */
+
+const bgm=document.getElementById("bgm");
+
+bgm.volume=0;
+
+bgm.play().catch(()=>{});
+
+let v=0;
+
+let fade=setInterval(()=>{
+
+if(v<0.5){
+
+v+=0.02;
+bgm.volume=v;
+
+}else{
+
+clearInterval(fade);
+
+}
+
+},120);
+
+}
 
 /* cards */
 const paragraphs=document.querySelectorAll(".typewriter");
@@ -278,16 +345,6 @@ el.dataset.text,
 delay += (el.dataset.text.length*18)+600;
 
 });
-
-
-/* FIX TYPEWRITER */
-setTimeout(()=>{
-document.querySelectorAll(".typewriter").forEach((el,i)=>{
-setTimeout(()=>{
-typeEffect(el,el.dataset.text,32);
-},i*1800);
-});
-},300);
 
 /* music */
 const bgm=document.getElementById("bgm");
